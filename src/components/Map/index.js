@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import { Creators as DeveloperActions } from "../../store/ducks/developers";
 
 import "mapbox-gl/dist/mapbox-gl.css";
-import styles from "./styles";
+import { Image } from "./styles";
 
 class Map extends Component {
   state = {
@@ -61,8 +61,7 @@ class Map extends Component {
           onClick={this.handleMapClick}
           captureClick={true}
         >
-          <img
-            style={styles.img}
+          <Image
             src="https://avatars1.githubusercontent.com/u/15328398?v=4"
             alt=""
           />

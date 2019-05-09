@@ -1,9 +1,7 @@
-const styles = {
-  img: {
-    borderRadius: 100,
-    width: 40,
-    height: 40,
-  },
-};
+import styled from "styled-components";
 
-export default styles;
+export const Image = styled.img`
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+`;

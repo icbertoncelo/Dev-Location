@@ -1,25 +1,14 @@
-import React, { Component } from 'react';
-import ReactMapGL from 'react-map-gl';
+import React from "react";
+import { Provider } from "react-redux";
+import "./config/ReactotronConfig";
 
-export default class App extends Component {
-  state = {
-    viewport: {
-      width: window.innerWidth,
-      height: window.innerHeight,
-      latitude: -21.7545,
-      longitude: -41.3244,
-      zoom: 10,
-    },
-  };
+import Map from "./pages/map";
+import store from "./store";
 
-  render() {
-    const { viewport } = this.state;
-    return (
-      <ReactMapGL
-        {...viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-        onViewportChange={viewport => this.setState({ viewport })}
-      />
-    );
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <Map />
+  </Provider>
+);
+
+export default App;

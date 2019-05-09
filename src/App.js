@@ -2,12 +2,14 @@ import React from "react";
 import { Provider } from "react-redux";
 import "./config/ReactotronConfig";
 
-import Map from "./pages/map";
+import Routes from "./routes";
 import store from "./store";
+
+import "./styles.css";
 
 const App = () => (
   <Provider store={store}>
-    <Map />
+    <Routes />
   </Provider>
 );
 

@@ -13,6 +13,6 @@
     ],
     "import/prefer-default-export": "off",
     "react/jsx-one-expression-per-line": "off",
-    "react/jsx-max-props-per-line": "true"
+    "react/jsx-max-props-per-line": [1, { "when": "always" }]
   }
 }

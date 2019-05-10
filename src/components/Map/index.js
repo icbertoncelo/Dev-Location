@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import ReactMapGL, { Marker } from "react-map-gl";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ReactMapGL, { Marker } from 'react-map-gl';
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Creators as DeveloperActions } from "../../store/ducks/developers";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as DeveloperActions } from '../../store/ducks/developers';
 
-import "mapbox-gl/dist/mapbox-gl.css";
-import { Image } from "./styles";
+import 'mapbox-gl/dist/mapbox-gl.css';
+import { Image } from './styles';
 
 class Map extends Component {
   state = {
@@ -16,17 +16,17 @@ class Map extends Component {
       height: window.innerHeight,
       latitude: -21.7545,
       longitude: -41.3244,
-      zoom: 14
-    }
+      zoom: 14,
+    },
   };
 
   componentDidMount() {
-    window.addEventListener("resize", this._resize);
+    window.addEventListener('resize', this._resize);
     this._resize();
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this._resize);
+    window.removeEventListener('resize', this._resize);
   }
 
   _resize = () => {
@@ -34,13 +34,13 @@ class Map extends Component {
       viewport: {
         ...this.state.viewport,
         width: window.innerWidth,
-        height: window.innerHeight
-      }
+        height: window.innerHeight,
+      },
     });
   };
 
-  handleMapClick = e => {
-    //const [longitude, latitude] = e.lngLat;
+  handleMapClick = (e) => {
+    // const [longitude, latitude] = e.lngLat;
 
     this.props.addDeveloperRequest();
   };
@@ -59,7 +59,7 @@ class Map extends Component {
           latitude={-21.7545}
           longitude={-41.3244}
           onClick={this.handleMapClick}
-          captureClick={true}
+          captureClick
         >
           <Image
             src="https://avatars1.githubusercontent.com/u/15328398?v=4"
@@ -72,17 +72,16 @@ class Map extends Component {
 }
 
 Map.propTypes = {
-  addDeveloperRequest: PropTypes.func.isRequired
+  addDeveloperRequest: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  developers: state.developers
+  developers: state.developers,
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(DeveloperActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(DeveloperActions, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Map);

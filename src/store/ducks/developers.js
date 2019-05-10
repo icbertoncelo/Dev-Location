@@ -1,7 +1,7 @@
 /*
 Types
 */
-const Types = {
+export const Types = {
   ADD_REQUEST: 'developers/ADD_REQUEST',
   ADD_SUCCESS: 'developers/ADD_SUCCESS',
   ADD_FAILURE: 'developers/ADD_FAILURE',
@@ -25,15 +25,7 @@ export default function developers(state = initialState, action) {
         ...state,
         loading: false,
         error: null,
-        data: [
-          ...state.data,
-          {
-            id: Math.random(),
-            login: 'icbertoncelo',
-            avatar_url: 'https://avatars1.githubusercontent.com/u/15328398?v=4',
-            url: 'https://api.github.com/users/icbertoncelo',
-          },
-        ],
+        data: [...state.data, action.payload.data],
       };
     case Types.ADD_FAILURE:
       return { ...state, loading: false, error: action.payload.error };
@@ -57,7 +49,7 @@ export const Creators = {
   }),
 
   addDeveloperFailure: error => ({
-    Types: Types.ADD_FAILURE,
+    type: Types.ADD_FAILURE,
     payload: { error },
   }),
 };

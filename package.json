@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "dotenv": "^8.0.0",
     "font-awesome": "^4.7.0",
     "prop-types": "^15.7.2",
@@ -14,7 +15,9 @@
     "react-scripts": "3.0.1",
     "reactotron-react-js": "^3.2.0",
     "reactotron-redux": "^3.1.0",
+    "reactotron-redux-saga": "^4.2.2",
     "redux": "^4.0.1",
+    "redux-saga": "^1.0.2",
     "styled-components": "^4.2.0"
   },
   "scripts": {

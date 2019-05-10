@@ -27,6 +27,7 @@ export const Developer = styled.div`
     margin-left: 10px;
     display: flex;
     flex-direction: column;
+    width: 65%;
 
     strong {
       font-size: 16px;

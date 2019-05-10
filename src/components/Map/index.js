@@ -29,9 +29,10 @@ class Map extends Component {
   }
 
   _resize = () => {
+    const { viewport } = this.state;
     this.setState({
       viewport: {
-        ...this.state.viewport,
+        ...viewport,
         width: window.innerWidth,
         height: window.innerHeight,
       },
@@ -39,18 +40,18 @@ class Map extends Component {
   };
 
   handleMapClick = (e) => {
-    const [latitude, longitude] = e.lngLat;
+    const [longitude, latitude] = e.lngLat;
     const { showModal } = this.props;
 
     showModal({ latitude, longitude });
   };
 
   render() {
-    const { viewport } = this.state;
+    const { viewport: viewportState } = this.state;
     const { developers } = this.props;
     return (
       <ReactMapGL
-        {...viewport}
+        {...viewportState}
         onClick={this.handleMapClick}
         mapStyle="mapbox://styles/mapbox/basic-v9"
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
@@ -63,8 +64,8 @@ class Map extends Component {
             key={developer.id}
           >
             <Image
-              src="https://avatars1.githubusercontent.com/u/15328398?v=4"
-              alt=""
+              src={developer.avatar_url}
+              alt={`${developer.name} Avatar`}
             />
           </Marker>
         ))}

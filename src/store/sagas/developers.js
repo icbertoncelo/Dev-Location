@@ -10,6 +10,7 @@ export function* addDeveloper(action) {
     const developerData = {
       id: data.id,
       login: data.login,
+      name: data.name,
       avatar_url: data.avatar_url,
       url: data.html_url,
       cordinates: action.payload.cordinates,

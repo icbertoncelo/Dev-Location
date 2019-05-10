@@ -13,6 +13,7 @@
     ],
     "import/prefer-default-export": "off",
     "react/jsx-one-expression-per-line": "off",
-    "react/jsx-max-props-per-line": [1, { "when": "always" }]
+    "react/jsx-max-props-per-line": [1, { "when": "always" }],
+    "max-len": ["error", { "ignoreUrls": true }]
   }
 }

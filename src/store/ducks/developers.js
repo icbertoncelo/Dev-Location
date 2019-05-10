@@ -22,7 +22,6 @@ export default function developers(state = initialState, action) {
       return { ...state, loading: true };
     case Types.ADD_SUCCESS:
       return {
-        ...state,
         loading: false,
         error: null,
         data: [...state.data, action.payload.data],
@@ -38,9 +37,9 @@ export default function developers(state = initialState, action) {
 Actions
 */
 export const Creators = {
-  addDeveloperRequest: developer => ({
+  addDeveloperRequest: (developer, cordinates) => ({
     type: Types.ADD_REQUEST,
-    payload: { developer },
+    payload: { developer, cordinates },
   }),
 
   addDeveloperSuccess: data => ({

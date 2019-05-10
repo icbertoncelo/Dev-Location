@@ -4,9 +4,8 @@ import ReactMapGL, { Marker } from 'react-map-gl';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Creators as DeveloperActions } from '../../store/ducks/developers';
+import { Creators as ModalActions } from '../../store/ducks/modal';
 
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { Image } from './styles';
 
 class Map extends Component {
@@ -40,13 +39,15 @@ class Map extends Component {
   };
 
   handleMapClick = (e) => {
-    // const [longitude, latitude] = e.lngLat;
+    const [latitude, longitude] = e.lngLat;
+    const { showModal } = this.props;
 
-    this.props.addDeveloperRequest();
+    showModal({ latitude, longitude });
   };
 
   render() {
     const { viewport } = this.state;
+    const { developers } = this.props;
     return (
       <ReactMapGL
         {...viewport}
@@ -55,31 +56,32 @@ class Map extends Component {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         onViewportChange={viewport => this.setState({ viewport })}
       >
-        <Marker
-          latitude={-21.7545}
-          longitude={-41.3244}
-          onClick={this.handleMapClick}
-          captureClick
-        >
-          <Image
-            src="https://avatars1.githubusercontent.com/u/15328398?v=4"
-            alt=""
-          />
-        </Marker>
+        {developers.data.map(developer => (
+          <Marker
+            latitude={developer.cordinates.latitude}
+            longitude={developer.cordinates.longitude}
+            key={developer.id}
+          >
+            <Image
+              src="https://avatars1.githubusercontent.com/u/15328398?v=4"
+              alt=""
+            />
+          </Marker>
+        ))}
       </ReactMapGL>
     );
   }
 }
 
 Map.propTypes = {
-  addDeveloperRequest: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   developers: state.developers,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(DeveloperActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(ModalActions, dispatch);
 
 export default connect(
   mapStateToProps,

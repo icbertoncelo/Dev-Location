@@ -9,6 +9,13 @@ export const Container = styled.div`
   height: 94%;
   border-radius: 5px;
   overflow: auto;
+
+  p {
+    text-align: center;
+    font-size: 18px;
+    color: #999999;
+    padding: 10px;
+  }
 `;
 
 export const Developer = styled.div`
@@ -47,7 +54,11 @@ export const Developer = styled.div`
     border-radius: 50%;
     position: absolute;
     right: 10px;
-    background: #8b0000;
+    background: #e00000;
+
+    &:hover {
+      background: #b00000;
+    }
 
     i {
       color: #fff;

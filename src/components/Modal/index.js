@@ -17,7 +17,6 @@ class DevModal extends Component {
   handleSaveUser = (e) => {
     e.preventDefault();
     const { userInput } = this.state;
-    const { hideModal } = this.props;
     const {
       addDeveloperRequest,
       modal: { cordinates },
@@ -25,7 +24,6 @@ class DevModal extends Component {
 
     addDeveloperRequest(userInput, cordinates);
     this.setState({ userInput: '' });
-    hideModal();
   };
 
   handleHideModal = () => {

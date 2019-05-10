@@ -2,6 +2,7 @@ import { call, put } from 'redux-saga/effects';
 import api from '../../services/api';
 
 import { Creators as DeveloperActions } from '../ducks/developers';
+import { Creators as ModalActions } from '../ducks/modal';
 
 export function* addDeveloper(action) {
   try {
@@ -19,5 +20,7 @@ export function* addDeveloper(action) {
     yield put(DeveloperActions.addDeveloperSuccess(developerData));
   } catch (err) {
     yield put(DeveloperActions.addDeveloperFailure('Error'));
+  } finally {
+    yield put(ModalActions.hideModal());
   }
 }

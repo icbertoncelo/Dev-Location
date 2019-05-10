@@ -7,21 +7,27 @@ import { Creators as DeveloperAction } from '../../store/ducks/developers';
 
 import { Container, Developer } from './styles';
 
-const DevList = ({ developers }) => (
+const DevList = ({ developers, removeDeveloper }) => (
   <Container>
+    {!developers.data.length && <p>Nenhum usuário adicionado</p>}
     <ul>
       {developers.data.map(developer => (
         <li key={developer.id}>
           <Developer>
             <img
               src={developer.avatar_url}
-              alt={`${developer.name} Avatar`}
+              alt={developer.name}
             />
             <div>
               <strong>{developer.name}</strong>
               <span>{developer.login}</span>
             </div>
-            <button type="submit">
+            <button
+              type="button"
+              onClick={() => {
+                removeDeveloper(developer);
+              }}
+            >
               <i className="fa fa-trash" />
             </button>
           </Developer>

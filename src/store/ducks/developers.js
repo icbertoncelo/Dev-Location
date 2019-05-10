@@ -5,6 +5,7 @@ export const Types = {
   ADD_REQUEST: 'developers/ADD_REQUEST',
   ADD_SUCCESS: 'developers/ADD_SUCCESS',
   ADD_FAILURE: 'developers/ADD_FAILURE',
+  REMOVE: 'developers/REMOVE',
 };
 
 /*
@@ -28,6 +29,11 @@ export default function developers(state = initialState, action) {
       };
     case Types.ADD_FAILURE:
       return { ...state, loading: false, error: action.payload.error };
+    case Types.REMOVE:
+      return {
+        ...state,
+        data: state.data.filter(dev => dev.id !== action.payload.developer.id),
+      };
     default:
       return state;
   }
@@ -50,5 +56,9 @@ export const Creators = {
   addDeveloperFailure: error => ({
     type: Types.ADD_FAILURE,
     payload: { error },
+  }),
+  removeDeveloper: developer => ({
+    type: Types.REMOVE,
+    payload: { developer },
   }),
 };

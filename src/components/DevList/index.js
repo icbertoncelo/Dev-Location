@@ -37,6 +37,11 @@ const DevList = ({ developers, removeDeveloper }) => (
   </Container>
 );
 
+DevList.propTypes = {
+  developers: PropTypes.shape({}).isRequired,
+  removeDeveloper: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
   developers: state.developers,
 });

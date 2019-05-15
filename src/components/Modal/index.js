@@ -10,6 +10,22 @@ import { Creators as ModalActions } from '../../store/ducks/modal';
 import { Container } from './styles';
 
 class DevModal extends Component {
+  static propTypes = {
+    addDeveloperRequest: PropTypes.func.isRequired,
+    hideModal: PropTypes.func.isRequired,
+    modal: PropTypes.shape({
+      visible: PropTypes.bool,
+      // error: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.string]),
+      cordinates: PropTypes.oneOfType([
+        PropTypes.oneOf([null]),
+        PropTypes.shape({
+          latitude: PropTypes.number,
+          longitude: PropTypes.number,
+        }),
+      ]),
+    }).isRequired,
+  };
+
   state = {
     userInput: '',
   };
@@ -70,10 +86,6 @@ class DevModal extends Component {
     );
   }
 }
-
-Modal.propTypes = {
-  addDeveloperRequest: PropTypes.func,
-};
 
 const mapStateToProps = state => ({
   developers: state.developers,

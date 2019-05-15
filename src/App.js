@@ -1,6 +1,10 @@
-import React from 'react';
-import { Provider } from 'react-redux';
 import './config/ReactotronConfig';
+
+import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { Provider } from 'react-redux';
 import GlobalStyle from './globalStyle';
 
 import Routes from './routes';
@@ -11,6 +15,7 @@ const App = () => (
     <>
       <GlobalStyle />
       <Routes />
+      <ToastContainer autoClose={3000} />
     </>
   </Provider>
 );
